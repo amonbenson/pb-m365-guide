@@ -1,0 +1,25 @@
+services:
+  pocketbase:
+    build: ./pocketbase
+    env_file: .env
+    volumes:
+      - ./pocketbase/pb_hooks:/pb/pb_hooks
+      - ./pocketbase/pb_migrations:/pb/pb_migrations
+      - pb_data:/pb/pb_data
+
+  web:
+    build: ./web
+    depends_on: [pocketbase]
+    ports:
+      - "8080:80"
+
+  # Public HTTPS URL for Teams testing: docker compose --profile tunnel up -d
+  # Quick tunnels do not pass Server-Sent Events, so PocketBase's built-in OAuth2 popup and realtime fail through it.
+  tunnel:
+    image: cloudflare/cloudflared:2025.11.1
+    command: tunnel --no-autoupdate --url http://web:80
+    depends_on: [web]
+    profiles: [tunnel]
+
+volumes:
+  pb_data:

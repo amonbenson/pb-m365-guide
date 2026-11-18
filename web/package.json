@@ -1,0 +1,16 @@
+{
+  "name": "pocketbase-entra-demo-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/app.js src/tab-config.js src/redirect.js --bundle --format=esm --target=es2022 --outdir=public/build"
+  },
+  "dependencies": {
+    "@azure/msal-browser": "5.29.1",
+    "@microsoft/teams-js": "2.59.0",
+    "pocketbase": "0.29.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}

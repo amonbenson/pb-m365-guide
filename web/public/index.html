@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entra Demo</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 16px; color: #222; background: #fff; }
+  h1 { font-size: 1.2rem; margin: 0 0 4px; }
+  #host, #status { color: #555; margin: 2px 0; }
+  fieldset { border: 1px solid #ddd; margin: 10px 0; padding: 8px; }
+  legend { font-weight: 600; font-size: .9rem; }
+  button, input { margin: 2px; padding: 6px 10px; }
+  pre { font-size: .75rem; white-space: pre-wrap; word-break: break-all; background: #f6f6f6; padding: 8px; }
+</style>
+</head>
+<body>
+<h1>PocketBase + Entra ID demo</h1>
+<p id="host"></p>
+<p id="status"></p>
+<fieldset>
+  <legend>Account</legend>
+  <button data-action="sign-in-popup">Sign in (popup)</button>
+  <button data-action="sign-in-redirect">Sign in (redirect)</button>
+  <button data-action="sign-in-pocketbase">Sign in (PocketBase OAuth2)</button>
+  <button data-action="sign-out">Sign out</button>
+</fieldset>
+<fieldset>
+  <legend>Tenant users</legend>
+  <input id="search" placeholder="Name starts with">
+  <button data-action="directory-live">Search live (Graph)</button>
+  <button data-action="directory-mirrored">Search mirrored</button>
+</fieldset>
+<fieldset>
+  <legend>SharePoint list</legend>
+  <button data-action="items-live">Items live (Graph)</button>
+  <button data-action="items-mirrored">Items mirrored (with owner)</button>
+  <button data-action="items-mine">Items I own</button>
+  <button data-action="mirror-refresh">Refresh mirror</button>
+</fieldset>
+<fieldset>
+  <legend>Notes on a mirrored item (PocketBase data)</legend>
+  <input id="item-id" placeholder="sp_items record id">
+  <input id="note-text" placeholder="Note">
+  <button data-action="notes-list">Show notes</button>
+  <button data-action="notes-add">Add note</button>
+</fieldset>
+<pre id="output"></pre>
+<script type="module" src="/build/app.js"></script>
+</body>
+</html>
